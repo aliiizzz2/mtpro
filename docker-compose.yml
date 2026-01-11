@@ -27,9 +27,6 @@ services:
       # Example: ee00000000000000000000000000000000
       - SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48
 
-      # Optional: Telegram advertising tag for sponsored channels
-      # Get yours from @MTProxybot
-      - AD_TAG=asda
       - SERVER_IP=95.179.130.218
     volumes:
       # Persist configuration and secrets

@@ -54,12 +54,6 @@ CMD_ARGS="${CMD_ARGS} -S ${SECRET}"
 CMD_ARGS="${CMD_ARGS} --aes-pwd ${PROXY_SECRET}"
 CMD_ARGS="${CMD_ARGS} -M ${WORKERS}"
 
-# Add advertising tag if provided
-if [ -n "${AD_TAG}" ]; then
-    echo "Using advertising tag: ${AD_TAG}"
-    CMD_ARGS="${CMD_ARGS} -P ${AD_TAG}"
-fi
-
 # Display connection info
 echo ""
 echo "======================================"
@@ -68,9 +62,6 @@ echo "  Proxy Port: ${PORT}"
 echo "  Stats Port: ${STATS_PORT}"
 echo "  Workers: ${WORKERS}"
 echo "  Secret: ${SECRET}"
-if [ -n "${AD_TAG}" ]; then
-    echo "  Ad Tag: ${AD_TAG}"
-fi
 echo "======================================"
 echo ""
 
