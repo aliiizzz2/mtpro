@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mtproxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mtproxy
+    restart: unless-stopped
+    ports:
+      - "443:443"      # MTProxy port
+      - "8888:8888"    # Stats port (optional, can be removed for security)
+    environment:
+      # Proxy port (default: 443)
+      - PORT=443
+
+      # Statistics port (default: 8888)
+      # You can access stats at http://your-server-ip:8888/stats
+      - STATS_PORT=8888
+
+      # Number of worker threads (default: 2)
+      # Increase for higher traffic
+      - WORKERS=2
+
+      # Secret key for connection (leave empty to auto-generate)
+      # Format: 32-character hex string (16 bytes)
+      # Example: ee00000000000000000000000000000000
+      - SECRET=ec4dd80983dbf12d6b354cf7bcfe9a48
+
+      # Optional: Telegram advertising tag for sponsored channels
+      # Get yours from @MTProxybot
+      - AD_TAG=asda
+      - SERVER_IP=95.179.130.218
+    volumes:
+      # Persist configuration and secrets
+      - ./data:/mtproxy/config
+    networks:
+      - mtproxy-network
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+
+networks:
+  mtproxy-network:
+    driver: bridge
+
+volumes:
+  mtproxy-data:

@@ -1,0 +1,23 @@
+# MTProxy data directory
+data/
+
+# Docker volumes
+*.pid
+
+# Logs
+*.log
+
+# Environment variables (if you create a .env file)
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
