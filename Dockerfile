@@ -30,6 +30,9 @@ RUN apt-get update && apt-get install -y \
     zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
+# Create mtproxy user for privilege dropping
+RUN useradd -r -s /bin/false mtproxy
+
 # Create working directory
 WORKDIR /mtproxy
 
@@ -41,7 +44,8 @@ COPY entrypoint.sh /mtproxy/
 RUN chmod +x /mtproxy/entrypoint.sh
 
 # Create directory for secrets and config
-RUN mkdir -p /mtproxy/config
+RUN mkdir -p /mtproxy/config && \
+    chown -R mtproxy:mtproxy /mtproxy/config
 
 # Expose MTProxy ports
 # Default: 443 for proxy, 8888 for stats (optional)

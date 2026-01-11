@@ -47,7 +47,8 @@ else
 fi
 
 # Build command line arguments
-CMD_ARGS="-p ${STATS_PORT}"
+CMD_ARGS="-u mtproxy"
+CMD_ARGS="${CMD_ARGS} -p ${STATS_PORT}"
 CMD_ARGS="${CMD_ARGS} -H ${PORT}"
 CMD_ARGS="${CMD_ARGS} -S ${SECRET}"
 CMD_ARGS="${CMD_ARGS} --aes-pwd ${PROXY_SECRET}"
