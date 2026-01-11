@@ -51,7 +51,7 @@ CMD_ARGS="-u nobody"
 CMD_ARGS="${CMD_ARGS} -p ${STATS_PORT}"
 CMD_ARGS="${CMD_ARGS} -H ${PORT}"
 CMD_ARGS="${CMD_ARGS} -S ${SECRET}"
-CMD_ARGS="${CMD_ARGS} --aes-pwd ${PROXY_SECRET} ${PROXY_MULTI_CONF}"
+CMD_ARGS="${CMD_ARGS} --aes-pwd ${PROXY_SECRET}"
 CMD_ARGS="${CMD_ARGS} -M ${WORKERS}"
 
 # Add advertising tag if provided
@@ -82,4 +82,4 @@ if [ -n "${SERVER_IP}" ]; then
 fi
 
 echo "Starting MTProxy..."
-exec /mtproxy/mtproto-proxy ${CMD_ARGS}
+exec /mtproxy/mtproto-proxy ${CMD_ARGS} ${PROXY_MULTI_CONF}
